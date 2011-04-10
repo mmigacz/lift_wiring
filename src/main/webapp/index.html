@@ -1,0 +1,23 @@
+<div class="lift:surround?with=default;at=content">
+  <h2>Wiring test. Try to refresh feew timnes to see the content blinking - you can notice text from raw html template like "selected-tag" or "test-tag". The blinking is specialy visible in the chrome </h2>
+
+    <div class="lift:hello_world.selected">
+        List of selected tags. Click on tag to remove it.<br/>
+        <ul>
+            <li><span class="tag">selected-tag</span></li>
+        </ul>
+    </div>
+
+    <div class="lift:hello_world.filter">
+        Available tags: "aa" :: "tag1" :: "tag2" :: "tag3" :: "tag4" :: "tag44"<br/>
+        <label>Filter: </label><input type="text" id="tag_filter"/>
+    </div>
+
+    <div class="lift:hello_world.tags">
+        Click on tag to add it to selected tags section. After full page reload links are inactive. It changes you filter tags and list is reloaded with wiring<br/>
+        <ul>
+            <li><span class="tag">test-tag</span></li>
+        </ul>
+    </div>
+</div>
+
