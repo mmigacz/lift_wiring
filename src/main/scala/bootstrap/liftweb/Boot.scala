@@ -14,7 +14,7 @@ class Boot {
     LiftRules.addToPackages("wiring")
 
     // Build SiteMap
-    def sitemap() = SiteMap(Menu("Home") / "index")
+    def sitemap() = SiteMap(Menu("Wiring1") / "index", Menu("Wiring2") / "index2")
 
      LiftRules.setSiteMap(sitemap())
     /*

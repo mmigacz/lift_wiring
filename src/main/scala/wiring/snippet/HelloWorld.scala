@@ -5,9 +5,10 @@ import _root_.net.liftweb.util._
 import _root_.net.liftweb.common._
 import Helpers._
 import net.liftweb.http.js.JsCmds._
-import net.liftweb.http.{WiringUI, SHtml}
 import net.liftweb.http.js.jquery.JqWiringSupport
 import xml.{Text, NodeSeq}
+import net.liftweb.common.Box._
+import net.liftweb.http.{S, WiringUI, SHtml}
 
 
 class HelloWorld {
@@ -24,13 +25,22 @@ class HelloWorld {
   }
 
 
-  def tags(xhtml: NodeSeq): NodeSeq = WiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)(
-    (tags, ns) => {
-      ("li" #> tags.map( row =>
-        ".tag" #> SHtml.a(() => addTag(row), Text(row))
-      ))(ns)
-    }
-  )
+  def tags(xhtml: NodeSeq): NodeSeq = WiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns))
+
+
+  def tags2(xhtml: NodeSeq): NodeSeq = {
+    WiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns)) ++
+      renderTags(tagList.currentValue._1, xhtml)
+  }
+
+
+  def renderTags( tags: List[String], ns: NodeSeq ): NodeSeq = {
+    ("li" #> tags.map( row =>
+      ".tag" #> SHtml.a(() => addTag(row), Text(row))
+    ))(ns)
+  }
+
+
 
   def selected(xhtml: NodeSeq): NodeSeq = WiringUI.toNode(xhtml, selectedTags, JqWiringSupport.fade)(
     (tags, ns) => {
