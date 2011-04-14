@@ -9,6 +9,7 @@ import net.liftweb.http.js.jquery.JqWiringSupport
 import xml.{Text, NodeSeq}
 import net.liftweb.common.Box._
 import net.liftweb.http.{S, WiringUI, SHtml}
+import lib.MyWiringUI
 
 
 class HelloWorld {
@@ -29,8 +30,8 @@ class HelloWorld {
 
 
   def tags2(xhtml: NodeSeq): NodeSeq = {
-    WiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns)) ++
-      renderTags(tagList.currentValue._1, xhtml)
+    val ne = MyWiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns))
+    renderTags(tagList.currentValue._1, ne)
   }
 
 
