@@ -30,8 +30,7 @@ class HelloWorld {
 
 
   def tags2(xhtml: NodeSeq): NodeSeq = {
-    val ne = MyWiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns))
-    renderTags(tagList.currentValue._1, ne)
+    MyWiringUI.toNode(xhtml, tagList, JqWiringSupport.fade)((tags, ns) => renderTags(tags, ns))
   }
 
 
