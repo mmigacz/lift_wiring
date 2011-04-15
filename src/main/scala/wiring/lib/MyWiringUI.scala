@@ -242,7 +242,7 @@ object MyWiringUI {
     addJsFunc(cell, (t: T, first: Boolean) => {
       jsEffect(id, first, SetHtml(id, f(t, elem.child)))
     })
-    elem
+    f(cell.currentValue._1, elem)
   }
 
   /**
@@ -276,7 +276,7 @@ object MyWiringUI {
       addJsFunc(cell, (t: T, first: Boolean) => {
         jsEffect(id, first, SetHtml(id, f(t, elem.child)))
       })
-      elem
+      f(cell.currentValue._1, elem)
     }
 
   /**
@@ -304,9 +304,10 @@ object MyWiringUI {
       if (first || (ct > lastTime && value != lastValue)) {
         lastValue = value
         lastTime = ct
+        if(first) Noop
+        else f(value, first)
+      }else{
         Noop
-      } else{
-        f(value, first)
       }
     })
   }
